@@ -3,7 +3,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 1111;
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 var Datastore = require('nedb');
