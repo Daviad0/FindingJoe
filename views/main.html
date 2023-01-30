@@ -1,0 +1,113 @@
+<html>
+    <head>
+        <title>Finding Joe</title>
+        <link rel="stylesheet" href="style.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    </head>
+
+    <style>
+
+        *{
+            font-family: 'Ubuntu', sans-serif;
+        }
+        .material-symbols-rounded {
+            font-variation-settings:
+            'FILL' 1,
+            'wght' 600,
+            'GRAD' 200,
+            'opsz' 48
+          }
+
+    </style>
+</html>
+<body>
+
+    <div class="absolutecenter screen" style="width:100%;display:none" data-id="2">
+        <div class="flexcenter" style="margin:10px">
+            <div class="darkcontainer" style="width:40vw;text-align:center;min-width:400px">
+                <div class="flexcenter">
+                    <span class="text" id="subtitle">Joe is currently in...</span>
+                </div>
+                <div style="text-align: center;">
+                    <div class="flexcenter" style="padding:20px;border:2px solid white;border-radius:8px;margin:20px;display:inline-block">
+                        <span class="text bold" style="font-size: 64px" id="room">???</span>
+                    </div>
+                </div>
+                
+                <div class="flexcenter" style="margin:10px" id="voting">
+                    <span class="text material-symbols-rounded clickable greenhover" style="width:60px" id="upvote" onclick="submitVote('UPVOTE')">thumb_up</span>
+                    <span class="text material-symbols-rounded clickable redhover" style="width:60px" id="downvote" onclick="submitVote('DOWNVOTE')">thumb_down</span>
+                    <span class="text material-symbols-rounded clickable redhover" style="width:60px" id="lock" onclick="lock()">lock</span>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="flexcenter" style="margin:10px" id="submitnewstatus">
+            <div class="darkcontainer" style="width:40vw;text-align:center">
+                <div class="flexapart">
+                    <span class="text" style="font-size:20px">No... Joe is in...</span>
+                    <div>
+                        <select aria-placeholder="Select a Room" id="roomselect">
+                            <option value="electrical">Electrical</option>
+                            <option value="fabrication">Fabrication</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="animation">Animation</option>
+                            <option value="commsreach">Communications-Outreach</option>
+                            <option value="strategy">Strategy</option>
+                            <option value="programming">Programming</option>
+                            <option value="design">Design</option>
+                            <option value="rpm">RPM</option>
+                            <option value="o">O's Room</option>
+                        </select>
+                        <span class="text material-symbols-rounded clickable greenhover" style="width:40px;font-size:16px" id="submit" onclick="submitRoom()">push_pin</span>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="logobar">
+        <div class="flexcenter">
+            <img height="50px" src="862.png"/>
+            <div style="margin-left:20px;display:none" id="loggedin">
+                <div class="bluebghover clickable" style="background-color: white; padding:4px 8px; border-radius:4px;margin-top:5px" onclick="logout()">
+                    <span class="text bold flexcenter" id="authkey" style="color:#323996;font-size:16px">
+                        12345678
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="absolutecenter screen" style="width:100%;" data-id="1">
+        <div class="flexcenter" style="margin:10px">
+            <div class="darkcontainer" style="width:40vw;text-align:center;min-width:400px">
+                <div class="flexcenter" style="margin:20px">
+                    <span class="text bold">Login with Student ID / Auth Key</span>
+                </div>
+
+                <div class="flexcenter">
+                    <input class="input" style="width:60%" placeholder="12345678" id="key"/>
+                    
+                </div>
+
+                <div class="flexcenter" style="margin:20px">
+                    <span class="text material-symbols-rounded clickable flexcenter" style="width:60px" onclick="window.location = '/info'">help</span>
+                    <span class="text material-symbols-rounded clickable flexcenter greenhover" style="width:60px" onclick="tryLogin()" id="login">send</span>
+                </div>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+
+</body>
