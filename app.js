@@ -186,7 +186,22 @@ app.post("/api/state", (req, res) => {
             return;
         }
         
-        
+        var previousUpvotes = currentState.votes.filter(v => v.vote == "UPVOTE").length;
+        var previousDownvotes = currentState.votes.filter(v => v.vote == "DOWNVOTE").length;
+        var sender = currentState.sender;
+        db.trust.find({ key: sender }, function(err, docs) {
+            if(docs.length > 0){
+                docs[0].upvotes += previousUpvotes;
+                docs[0].downvotes += previousDownvotes;
+                db.trust.update({ key: sender }, docs[0], {}, function(err, numReplaced){
+
+                });
+            }else{
+                db.trust.insert({ key: sender, upvotes: previousUpvotes, downvotes: previousDownvotes }, function(err, newDoc){
+
+                });
+            }
+        });
 
         var room = req.body.room;
 
@@ -230,11 +245,15 @@ app.get("/api/currentState", (req, res) => {
             res.status(401).send({ status: "error" });
             return;
         }
+        var upvotes = currentState.votes.filter(v => v.vote == "UPVOTE").length;
+        var downvotes = currentState.votes.filter(v => v.vote == "DOWNVOTE").length;
     
         var sendBackCurrentState = {
             room: currentState.room,
             sender: currentState.sender,
             vote: currentState.votes.find(v => v.sender == key),
+            upvotes: upvotes,
+            downvotes: downvotes,
             uuid: currentState.uuid
         }
     
@@ -279,22 +298,7 @@ app.post("/api/vote", (req, res) => {
             currentState.votes.push({ sender: pseudoKey, vote: vote });
         }
 
-        var previousUpvotes = currentState.votes.filter(v => v.vote == "UPVOTE").length;
-        var previousDownvotes = currentState.votes.filter(v => v.vote == "DOWNVOTE").length;
-        var sender = currentState.sender;
-        db.trust.find({ key: sender }, function(err, docs) {
-            if(docs.length > 0){
-                docs[0].upvotes += previousUpvotes;
-                docs[0].downvotes += previousDownvotes;
-                db.trust.update({ key: sender }, docs[0], {}, function(err, numReplaced){
-
-                });
-            }else{
-                db.trust.insert({ key: sender, upvotes: previousUpvotes, downvotes: previousDownvotes }, function(err, newDoc){
-
-                });
-            }
-        });
+        
 
         res.send({ status: "success" });
     });

@@ -37,6 +37,11 @@
                 
                 <div class="flexcenter" style="margin:10px" id="voting">
                     <span class="text material-symbols-rounded clickable greenhover" style="width:60px" id="upvote" onclick="submitVote('UPVOTE')">thumb_up</span>
+                    <div class="bluebghover" style="background-color: white; padding:4px 8px; border-radius:4px;margin-top:5px">
+                        <span class="text bold flexcenter" id="votes" style="color:#323996;font-size:16px">
+                            0 / 0
+                        </span>
+                    </div>
                     <span class="text material-symbols-rounded clickable redhover" style="width:60px" id="downvote" onclick="submitVote('DOWNVOTE')">thumb_down</span>
                     <span class="text material-symbols-rounded clickable redhover" style="width:60px" id="lock" onclick="lock()">lock</span>
                 </div>

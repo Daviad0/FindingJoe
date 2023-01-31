@@ -141,6 +141,7 @@ async function refreshState(){
             document.getElementById("downvote").style.display = "";
             document.getElementById("lock").style.color = "";
             document.getElementById("submitnewstatus").style.display = "";
+            document.getElementById("votes").innerHTML = currentState.upvotes + " / " + currentState.downvotes;
             if(currentState.room == ""){
                 document.getElementById("room").innerText = "UNKNOWN";
                 document.querySelector("#upvote").style.color = "#cccccc";
@@ -176,6 +177,7 @@ async function submitVote(vote){
     document.querySelector("#downvote").style.color = "";
 
     var result = await postData('/api/vote', {vote: vote});
+    refreshState();
     if(result.success && result.data.status != "error"){
         document.querySelector("#" + vote.toLowerCase()).style.color = (vote == "UPVOTE") ? "#bbffbb" : "#ffbbbb";
     }else{
