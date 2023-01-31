@@ -290,7 +290,7 @@ app.post("/api/vote", (req, res) => {
             return;
         }
 
-        var prevVote = currentState.votes.find(v => v.sender == key);
+        var prevVote = currentState.votes.find(v => v.sender == pseudoKey);
         if(prevVote != undefined){
             currentState.votes.splice(currentState.votes.indexOf(prevVote), 1);
             currentState.votes.push({ sender: pseudoKey, vote: vote });
