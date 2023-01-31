@@ -149,7 +149,7 @@ async function refreshState(){
                 document.getElementById("room").innerText = currentState.room.substring(0, 1).toUpperCase() + currentState.room.substring(1);
                 document.querySelector("#upvote").style.color = "";
                 
-                document.getElementById("roomselect").value = currentState.room;
+                
                 if(currentState.vote != undefined){
                     document.querySelector("#" + currentState.vote.vote.toLowerCase()).style.color = (currentState.vote.vote == "UPVOTE") ? "#bbffbb" : "#ffbbbb";
                 }
